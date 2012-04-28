@@ -1,7 +1,7 @@
-#pragma once
-
 #ifndef __VERTEX_H__
 #define __VERTEX_H__
+
+#pragma once
 
 #include <string>
 
@@ -20,6 +20,8 @@ class Vertex {
 		string tag;
 		enum Color color;
 		double dist;
+//		int start;
+//		int stop;	
 		Vertex* pred;
 	public:
 		//Vertex(string tag, enum Color color, double dist, Vertex* pred);
@@ -32,6 +34,10 @@ class Vertex {
 		void setDist(double d);
 		Vertex* getPred();
 		void setPred(Vertex* v);
+		void setStart(int start);
+		int getStart();
+		void setStop(int stop);
+		int getStop();
 
   
 };
