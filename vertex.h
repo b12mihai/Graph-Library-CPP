@@ -22,7 +22,7 @@ class Vertex {
 		double dist;
 		Vertex* pred;
 	public:
-		Vertex(string tag, enum Color color, double dist, Vertex* pred);
+		//Vertex(string tag, enum Color color, double dist, Vertex* pred);
 		void setValues (string tag, enum Color color, double dist, Vertex* pred);
 		string getTag();
 		void setTag(string tag);

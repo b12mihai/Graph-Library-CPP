@@ -3,13 +3,13 @@
 
 using namespace std;
 
-Vertex::Vertex(string tag, enum Color color, double dist, Vertex* pred)
+/* Vertex::Vertex(string tag, enum Color color, double dist, Vertex* pred)
 {
 	this->tag.assign(tag);
 	this->color = color;
 	this->dist = dist;
 	this->pred = pred;
-}
+} */
 
 
 void Vertex::setValues (string tag, enum Color color, double dist, Vertex* pred)

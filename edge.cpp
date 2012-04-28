@@ -4,7 +4,15 @@
 
 using namespace std;
 
-Edge::Edge (Vertex* firstVertex, Vertex* secVertex, double inCost, string tag) 
+/* Edge::Edge (Vertex* firstVertex, Vertex* secVertex, double inCost, string tag) 
+{
+	this->orig = firstVertex;
+	this->dest = secVertex;
+	this->cost = inCost;
+	this->tag.assign(tag);
+} */
+
+void Edge::setValues(Vertex firstVertex, Vertex secVertex, double inCost, string tag)
 {
 	this->orig = firstVertex;
 	this->dest = secVertex;
@@ -12,20 +20,12 @@ Edge::Edge (Vertex* firstVertex, Vertex* secVertex, double inCost, string tag)
 	this->tag.assign(tag);
 }
 
-void Edge::setValues(Vertex* firstVertex, Vertex* secVertex, double inCost, string tag)
-{
-	this->orig = firstVertex;
-	this->dest = secVertex;
-	this->cost = inCost;
-	this->tag.assign(tag);
-}
-
-void Edge::setDestVertex(Vertex *dest)
+void Edge::setDestVertex(Vertex dest)
 {
 	this->dest = dest;
 }
 
-void Edge::setOrigVertex(Vertex *orig)
+void Edge::setOrigVertex(Vertex orig)
 {
 	this->orig = orig;
 }
@@ -40,12 +40,12 @@ void Edge::setTag(string tag)
 	this->tag = tag;
 }
     
-Vertex* Edge::getDestVertex() 
+Vertex Edge::getDestVertex() 
 {
 	return this->dest;
 }
 
-Vertex* Edge::getOrigVertex() 
+Vertex Edge::getOrigVertex() 
 {
 	return this->orig;
 }

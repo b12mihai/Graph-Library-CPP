@@ -13,6 +13,9 @@
 
 using namespace std;
 
+typedef map<int, Vertex> VertexSet;
+typedef map<pair<int, int>, Edge> EdgeSet;
+
 class Graph {
 	private:
 		map <int, Vertex> V; //set of Vertexes
@@ -23,10 +26,9 @@ class Graph {
 
 	public:
 		Graph();
-		void insertVertex(Vertex v);
-		void insertEdge(Edge e);
-
 		bool loadGraphFromFile(const char* fileName);
+		void printGraphInfo();
+
 
 };
 
