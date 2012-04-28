@@ -2,7 +2,7 @@ Graph Library in C++
 ====================
 
 This is a simple implementation in C++ for graph
-algorithms in C++.
+algorithms.
 
 Class Graph has all the relevant functions for graph algorithms
 
