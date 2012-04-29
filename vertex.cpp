@@ -18,8 +18,8 @@ void Vertex::setValues (string tag, enum Color color, double dist, Vertex* pred)
 	this->color = color;
 	this->dist = dist;
 	this->pred = pred;
-//	this->start = 0;
-//	this->stop = 0;
+	this->start = 0;
+	this->stop = 0;
 }
 
 string Vertex::getTag()
@@ -63,7 +63,7 @@ void Vertex::setPred(Vertex* v)
 }
 
 
-/* int Vertex::getStart()
+int Vertex::getStart()
 {
 	return this->start;
 }
@@ -83,4 +83,4 @@ void Vertex::setStop(int stop)
 	this->stop = stop;
 }
 
-*/
+

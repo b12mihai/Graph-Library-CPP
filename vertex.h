@@ -20,8 +20,8 @@ class Vertex {
 		string tag;
 		enum Color color;
 		double dist;
-//		int start;
-//		int stop;	
+		int start;
+		int stop;	
 		Vertex* pred;
 	public:
 		//Vertex(string tag, enum Color color, double dist, Vertex* pred);
