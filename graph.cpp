@@ -5,6 +5,7 @@
 #include <fstream>
 #include <utility>
 #include <stack>
+#include <queue>
 
 int t;
 
@@ -74,6 +75,11 @@ bool Graph::loadGraphFromFile(const char* fileName)
 	return true;
 }
 
+VertexSet Graph::getVertexSet()
+{
+	return this->V;
+}
+
 void Graph::printGraphInfo()
 {
 	cout << "Number of vertex = " << this->n << endl;
@@ -87,9 +93,7 @@ void Graph::printGraphInfo()
 	cout << "Vertex set content: ";
 	for(itv = this->V.begin(); itv != this->V.end(); ++itv) {
 		cout << itv->second.getTag() << " ";
-		if(itv->second.getPred() == NULL)
-			cout << -1 << " ";
-		else cout << (*itv->second.getPred()).getIndex() << " ";
+		cout << itv->second.getDist() << " ";
 		cout << endl;
 	}
 
@@ -124,6 +128,7 @@ void Graph::clearVertex()
 	}
 }
 
+//TODO - make DFS exploration work
 void Graph::DFS()
 {
 	this->clearVertex();
@@ -141,9 +146,10 @@ void Graph::DFS()
 
 }
 
+//TODO - make this buggy function work
 void Graph::DFSV(Vertex u)
 {
-	int j;
+	int j, i;
 	int uidx = u.getIndex();
 	pair<int, int> ed;
 	u.setColor(GRI);
@@ -158,8 +164,9 @@ void Graph::DFSV(Vertex u)
 	while(!s.empty()) {
 		x = s.top();
 		s.pop();
+		i = x->getIndex();
 		if(x->getColor() == ALB) {
-			x->setColor(GRI);
+			this->V[i].setColor(GRI);	
 		}
 		for(iter = this->V.begin(); iter != this->V.end(); ++iter) {
 			v = &(iter->second);
@@ -167,79 +174,44 @@ void Graph::DFSV(Vertex u)
 			if(v->getColor() == ALB && this->adjmat[uidx][j] == 1) {
 				s.push(v);
 				cout << v->getIndex() << " ";
-				v->setPred(&u);
+				this->V[j].setPred(&u);
 			}
 		}
 
 	}
-	
-
-	//Iterate on adjancent vertex of u
-/*	for(iter = this->V.begin(); iter != this->V.end(); ++iter) {
-		v = (*iter).second;
-		j = v.getIndex();
-		if(this->adjmat[uidx][j] == 1 && v.getColor() == ALB) {
-			(*iter).second.setPred(&u);
-			ed = make_pair(u.getIndex(), j);
-			this->E[ed].setTag(string("tree edge"));
-			DFSV((*iter).second);
-		
-		} else if( v.getColor() == GRI) {
-	
-			ed = make_pair(u.getIndex(), j);
-			this->E[ed].setTag(string("come back edge"));
-		
-		} else if(u.getStart() < v.getStart()) {
-			
-			ed = make_pair(u.getIndex(), j);
-			this->E[ed].setTag(string("advancing edge"));
-	
-		} else {
-
-			ed = make_pair(u.getIndex(), j);
-			this->E[ed].setTag(string("treeverse edge"));
-		} 
-	} */
-
-	u.setColor(NEGRU);
-	++t;
-	u.setStop(t);
 } 
+void Graph::BFS(Vertex s)
+{
+	VertexSet::iterator iter;
+	queue<Vertex> q;
+	Vertex u;
 
+	for(iter = this->V.begin(); iter != this->V.end(); ++iter) {
+		iter->second.setColor(ALB);
+		iter->second.setPred(NULL);
+		iter->second.setDist(INF);
+	}
+	s.setDist(0);
+	s.setPred(NULL);
+	s.setColor(GRI);
+	q.push(s);
+	int j, uidx, i;
 
-/*
- * int t;
- * void DFS(Graf G){
- * Varf u;
- * for(u=V_Begin (G); u!=V_End(G); u=V_Next(G,u))
- * if(G_IsV(G,u)){
- * SetCol(u, 0);
- * SetPred(u, 0);
- * };
- * t = 0;
- * for(u=V_Begin(G); u!=V_End(G); u=V_Next(G,u))
- * if(G_IsV(G,u) && GetCol(u)==0)
- * DFSV(G, u);
- * }
- * 
- *
- * void DFSV(Graf G, Varf u){
- * Varf v;
- * SetCol(u, 1);
- * SetStart(u, ++t);
- * for(v=Vad_Begin(G,u); v!=Vad_End(G,u); v=Vad_Next(G,u,v))
- * if(G_IsV(G,v) && GetCol(v)==0){
- * SetPred(v, u);
- * DFSV(G, v);
- * A_SetEt(u,v, “arbore”)
- * }
- * else if(GetCol(v)=1)
- * A_SetEt(u,v,”revenire”);
- * else if(GetStart(u)<GetStart(v))
- * A_SetEt(u,v,”înaintare”);
- * else
- * A_SetEt(u,v,”traversare”);
- * SetCol(u, negru);
- * SetStop(u, ++t);
- * }
- */
+	while(!q.empty()) {
+		u = q.front();
+		q.pop();
+		uidx = u.getIndex();
+		cout << uidx << " " <<u.getTag() << " " << u.getDist() <<" "<<endl;
+		for(iter = this->V.begin(); iter != this->V.end(); ++iter) {
+			j = iter->second.getIndex();
+			if(this->adjmat[uidx][j] == 1 && iter->second.getColor() == ALB) {
+				i = iter->second.getIndex();
+				this->V[i].setColor(GRI);
+				this->V[i].setDist(u.getDist() + 1);
+				this->V[i].setPred(&u);
+				q.push(iter->second);
+			}
+		}
+		u.setColor(NEGRU);
+	}
+}

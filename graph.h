@@ -11,6 +11,8 @@
 #include <map>
 #include <iostream>
 
+#define INF 0x3f3f3f3f
+ 
 using namespace std;
 
 typedef map<int, Vertex> VertexSet;
@@ -33,6 +35,8 @@ class Graph {
 		void clearVertex();
 		void DFS();
 		void DFSV(Vertex v);
+		void BFS(Vertex start);
+		VertexSet getVertexSet();
 
 };
 

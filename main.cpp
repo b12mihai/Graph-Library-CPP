@@ -6,13 +6,14 @@ int main()
 {
 	Graph G;
 	
-	if( G.loadGraphFromFile("sample-graphs/sd11pg3.txt") == false) {
+	if( G.loadGraphFromFile("sample-graphs/cormenBFSpg596.txt") == false) {
 		cout << "Error opening file " << endl;
 		return -1;
 	}
+
+	Vertex v = G.getVertexSet()[1];
+	G.BFS(v);
 	
-	G.printGraphInfo();
-	G.DFS();
 	G.printGraphInfo();
 
 

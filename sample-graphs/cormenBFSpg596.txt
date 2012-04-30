@@ -1,0 +1,12 @@
+undirected
+8
+9
+0 r 1 s 1 tag
+0 r 4 v 1 tag
+1 s 5 w 1 tag
+5 w 2 t 1 tag
+5 w 6 x 1 tag
+2 t 6 x 1 tag
+2 t 3 u 1 tag
+6 x 7 y 1 tag
+3 u 7 y 1 tag
