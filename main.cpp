@@ -10,7 +10,9 @@ int main()
 		cout << "Error opening file " << endl;
 		return -1;
 	}
-
+	
+	G.printGraphInfo();
+	G.DFS();
 	G.printGraphInfo();
 
 

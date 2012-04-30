@@ -16,6 +16,8 @@ using namespace std;
 typedef map<int, Vertex> VertexSet;
 typedef map<pair<int, int>, Edge> EdgeSet;
 
+extern int t; //for time of discovery
+
 class Graph {
 	private:
 		map <int, Vertex> V; //set of Vertexes
@@ -28,7 +30,9 @@ class Graph {
 		Graph();
 		bool loadGraphFromFile(const char* fileName);
 		void printGraphInfo();
-
+		void clearVertex();
+		void DFS();
+		void DFSV(Vertex v);
 
 };
 

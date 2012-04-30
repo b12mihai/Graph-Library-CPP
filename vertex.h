@@ -21,11 +21,11 @@ class Vertex {
 		enum Color color;
 		double dist;
 		int start;
-		int stop;	
+		int stop;
+		int index;	
 		Vertex* pred;
 	public:
-		//Vertex(string tag, enum Color color, double dist, Vertex* pred);
-		void setValues (string tag, enum Color color, double dist, Vertex* pred);
+		void setValues (string tag, enum Color color, double dist, Vertex* pred, int index);
 		string getTag();
 		void setTag(string tag);
 		enum Color getColor();
@@ -38,6 +38,8 @@ class Vertex {
 		int getStart();
 		void setStop(int stop);
 		int getStop();
+		void setIndex(int index);
+		int getIndex();
 
   
 };
