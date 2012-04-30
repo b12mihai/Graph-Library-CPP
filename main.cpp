@@ -16,7 +16,6 @@ int main()
 	
 	G.printGraphInfo();
 
-
 	cout << "done" << endl;
 	return 0;
 }
