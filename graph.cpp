@@ -201,7 +201,8 @@ void Graph::BFS(Vertex s)
 		u = q.front();
 		q.pop();
 		uidx = u.getIndex();
-		cout << uidx << " " <<u.getTag() << " " << u.getDist() <<" "<<endl;
+		if(u.compareTo(s) == 0)
+			u.setDist(0);
 		for(iter = this->V.begin(); iter != this->V.end(); ++iter) {
 			j = iter->second.getIndex();
 			if(this->adjmat[uidx][j] == 1 && iter->second.getColor() == ALB) {
@@ -209,6 +210,8 @@ void Graph::BFS(Vertex s)
 				this->V[i].setColor(GRI);
 				this->V[i].setDist(u.getDist() + 1);
 				this->V[i].setPred(&u);
+				if(iter->second.compareTo(s) == 0)
+					iter->second.setDist(0);
 				q.push(iter->second);
 			}
 		}
