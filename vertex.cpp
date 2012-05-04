@@ -19,6 +19,11 @@ void Vertex::setIndex(int index)
 	this->index = index;
 }
 
+bool Vertex::compareTo(Vertex v)
+{
+	return this->getIndex() - v.getIndex();
+}
+
 int Vertex::getIndex()
 {
 	return this->index;

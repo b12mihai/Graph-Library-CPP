@@ -40,7 +40,7 @@ class Vertex {
 		int getStop();
 		void setIndex(int index);
 		int getIndex();
-
+		bool compareTo(Vertex v);
   
 };
 
